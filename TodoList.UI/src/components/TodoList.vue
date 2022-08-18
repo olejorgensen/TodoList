@@ -18,6 +18,7 @@
                         <td>{{ todoItem.isDone }}</td>
                         <td>{{ todoItem.name }}</td>
                         <td>{{ todoItem.description }}</td>
+                        <td>{{ todoItem.id }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -52,6 +53,15 @@
             // already being observed
             this.fetchData();
         },
+        filteredOrOrdered() {
+            // fetch the data when the ordering or filter changes and the data is
+            // already being observed
+
+            // TODO: this.filter = <databinding to value of filter textbox>.value;
+            // TODO: this.ascendingOrder = <databinding to value of order check>.isChecked;
+
+            this.fetchData();
+        },
         watch: {
             // call again the method if the route changes
             '$route': 'fetchData'
@@ -61,6 +71,9 @@
                 this.post = null;
                 this.loading = true;
 
+                // TODO: append query parameters:
+                // q=escape(filter)&asc=ascendingOrder
+
                 fetch('http://localhost:5150/TodoList', { mode: 'no-cors'})
                     .then(r => r.json())
                     .then(json => {
@@ -69,6 +82,14 @@
                         return;
                     });
             }
+            /*
+             TODO: Update todo item 
+            */ 
+
+            /*
+             TODO: Delete todo item 
+            */ 
+
         },
     });
 </script>
